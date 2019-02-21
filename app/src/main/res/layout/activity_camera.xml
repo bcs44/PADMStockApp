@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".CameraActivity">
+
+  <SurfaceView
+      android:layout_width="match_parent"
+      android:layout_height="480px"
+      android:id="@+id/cameraPreview"
+      android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cameraPreview"
+        android:id="@+id/txtResult"
+        android:layout_marginTop="20dp"
+         android:text="@string/result_text_defautl"
+        android:layout_centerHorizontal="true"
+         android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+</RelativeLayout>

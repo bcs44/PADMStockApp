@@ -1,0 +1,84 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient">
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/app_name">
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Spinner
+        android:id="@+id/SpinFirstType"
+        android:layout_width="fill_parent"
+        android:layout_height="69dp"
+        android:prompt="@string/string_product_type"
+        android:spinnerMode="dialog"></Spinner>
+
+    <Spinner
+        android:id="@+id/SpinSecondType"
+        android:layout_width="fill_parent"
+        android:layout_height="57dp"
+        android:entries="@array/exibCalcList"
+        android:prompt="@string/string_product_type_calcado"
+        android:spinnerMode="dialog"
+        android:visibility="invisible"></Spinner>
+
+        <EditText
+            android:id="@+id/ProdName"
+            android:layout_height="wrap_content"
+            android:hint="@string/string_prodName"
+            android:layout_width="fill_parent">
+        </EditText>
+
+        <EditText
+            android:id="@+id/ProdDesc"
+            android:layout_height="wrap_content"
+            android:hint="@string/string_prodDesc"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent">
+        </EditText>
+
+
+        <EditText
+            android:id="@+id/ProdPrice"
+            android:layout_height="wrap_content"
+            android:hint="@string/string_prodPrice"
+            android:layout_width="fill_parent">
+        </EditText>
+
+
+        <Button
+            android:id="@+id/BtnSave"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save"
+            android:onClick="createDialogQR"
+            android:layout_width="fill_parent">
+        </Button>
+
+
+
+</LinearLayout>
+

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:cardMaxElevation="15dp"
+        android:id="@+id/cv">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ic_launcher_background"
+                android:id="@+id/ivImage"
+                android:padding="5dp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/ivImage"
+                android:layout_toEndOf="@+id/ivImage"
+                android:padding="5dp"
+                android:layout_marginBottom="5dp"
+                >
+
+                <TextView
+                    android:text="Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvName"
+                    android:textStyle="normal|bold"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:text="Description"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/tvDesc"
+                    android:layout_height="36dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivImage"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                >
+
+                <TextView
+                    android:text="Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvPrice"
+                    android:layout_alignBaseline="@+id/btnRemove"
+                    android:layout_alignBottom="@+id/btnRemove"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnRemove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:elevation="4dp"
+                    android:fontFamily="sans-serif"
+                    android:padding="5dp"
+                    android:textAllCaps="false"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/btnRemove"
+                    android:layout_toEndOf="@+id/btnRemove"
+                    >
+
+                    <ImageButton
+                        app:srcCompat="@drawable/qty_decrease"
+                        android:id="@+id/qty_decrease"
+                        android:layout_weight="1"
+                        android:elevation="4dp"
+                        android:layout_height="36dp"
+                        android:layout_width="36dp" />
+
+                    <TextView
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/edQty"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:layout_weight="0"
+                        android:layout_width="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="20dp" />
+
+                    <ImageButton
+                        app:srcCompat="@drawable/qty_increase"
+                        android:id="@+id/qty_increase"
+                        android:layout_weight="1"
+                        android:elevation="4dp"
+                        android:layout_height="36dp"
+                        android:layout_width="36dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:text="€"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_alignBaseline="@+id/tvPrice"
+                    android:layout_alignBottom="@+id/tvPrice"
+                    android:layout_toLeftOf="@+id/tvPrice"
+                    android:layout_toStartOf="@+id/tvPrice" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titulo" />
+
+        <TextView
+            android:id="@+id/tvbigdesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Texto" />
+    </LinearLayout>
+
+
+</LinearLayout>

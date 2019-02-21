@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/gradient">
+
+    <ImageView
+        android:id="@+id/left"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="@android:dimen/thumbnail_width"
+
+        android:contentDescription="oioi"
+        android:src="@drawable/money" />
+
+    <ImageView
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@android:dimen/thumbnail_width"
+        android:layout_marginRight="6dp"
+        android:contentDescription="ola"
+        android:src="@drawable/box" />
+
+    <TextView
+        android:id="@+id/textViewBox"
+        android:layout_width="179dp"
+        android:layout_height="154dp"
+        android:layout_alignEnd="@+id/left"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-181dp"
+        android:layout_marginBottom="0dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewMoney"
+        android:layout_width="179dp"
+        android:layout_height="154dp"
+        android:layout_alignEnd="@+id/left"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="42dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:text="TextView" />
+
+</RelativeLayout>
