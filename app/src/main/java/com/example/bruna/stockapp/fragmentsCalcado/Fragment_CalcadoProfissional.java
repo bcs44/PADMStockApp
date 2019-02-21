@@ -46,7 +46,7 @@ public class Fragment_CalcadoProfissional extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_calcadolist, container, false);
+        final View view = inflater.inflate(R.layout.fragment_productslist, container, false);
         this.value = value;
         database =FirebaseDatabase.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

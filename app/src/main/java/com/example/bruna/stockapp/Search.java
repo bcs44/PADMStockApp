@@ -24,10 +24,6 @@ public class Search extends AppCompatActivity {
     Button btnSearch;
     EditText editText;
 
-    private StorageReference mStorageRef;
-    private FirebaseDatabase database;
-    List<String> arrayListFirstType = new ArrayList<>();
-    List<String> arrayListSecondType = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +46,8 @@ public class Search extends AppCompatActivity {
 
     private void search() {
 
-        String search = "Imobilizador";
-        DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Ortopedia").child("MembrosSuperiores");
+        String search = "69";
+        DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Calçado").child("Conforto");
         Query query = mFirebaseDatabaseReference.orderByChild("nome").startAt(search).endAt(search + "\uf8ff");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {

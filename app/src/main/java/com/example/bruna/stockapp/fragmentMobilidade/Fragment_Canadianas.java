@@ -1,4 +1,4 @@
-package com.example.bruna.stockapp.fragmentsOrtopedia;
+package com.example.bruna.stockapp.fragmentMobilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_OrtTroncoCabeca extends Fragment {
+public class Fragment_Canadianas extends Fragment {
     private StorageReference mStorageRef;
     private FirebaseDatabase database;
     private Long value;
@@ -47,7 +47,7 @@ public class Fragment_OrtTroncoCabeca extends Fragment {
         this.value = value;
         database =FirebaseDatabase.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("Ortopedia").child("TroncoCabeca");
+        DatabaseReference myRef = database.getReference().child("Mobilidade").child("Canadianas");
 
 
         myRef.addValueEventListener(new ValueEventListener() {
