@@ -23,6 +23,9 @@ public class Search extends AppCompatActivity {
 
     Button btnSearch;
     EditText editText;
+    List<String> arrayListFirstType = new ArrayList<>();
+    List<String> arrayListSecondType = new ArrayList<>();
+    List<Product> productsList = new ArrayList<>();
 
 
     @Override
@@ -38,7 +41,7 @@ public class Search extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search();
+                search2();
             }
         });
 
@@ -46,7 +49,9 @@ public class Search extends AppCompatActivity {
 
     private void search() {
 
-        String search = "69";
+        String search = "bengala";
+
+
         DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Calçado").child("Conforto");
         Query query = mFirebaseDatabaseReference.orderByChild("nome").startAt(search).endAt(search + "\uf8ff");
 
@@ -72,6 +77,88 @@ public class Search extends AppCompatActivity {
     }
 
 
+    private void search2() {
 
+        final String search = "Sapato";
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    arrayListFirstType.add(dataSnapshot1.getKey());
+                }
+                doTheRestSecondType(search);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w("Value", "Failed to read value.", error.toException());
+            }
+        });
+
+
+
+    }
+
+    private void doTheRestSecondType(final String search) {
+
+        for(int i = 0; i< arrayListFirstType.size(); i++){
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference().child(arrayListFirstType.get(i));
+
+            final int finalI = i;
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    arrayListSecondType = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        arrayListSecondType.add(dataSnapshot1.getKey());
+                    }
+                    doTheRest(arrayListFirstType.get(finalI), search);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("Value", "Failed to read value.", error.toException());
+                }
+            });
+
+
+        }
+
+
+    }
+
+    private void doTheRest(String firstType, String search) {
+        for(int i = 0; i< arrayListSecondType.size(); i++){
+            DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child(firstType).child(arrayListSecondType.get(i));
+            Query queryNome = mFirebaseDatabaseReference.orderByChild("nome").startAt(search).endAt(search + "\uf8ff");
+
+            queryNome.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            Product productsTable = dataSnapshot1.getValue(Product.class);
+                            productsList.add(productsTable);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+    }
 
 }
