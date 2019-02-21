@@ -3,9 +3,7 @@ package com.example.bruna.stockapp;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -53,7 +50,7 @@ public class AddProduct extends AppCompatActivity {
     List<String> arrayListFirstType = new ArrayList<>();
     List<String> arrayListSecondType = new ArrayList<>();
     String FirstType, SecondType;
-    private FirebaseDatabase database;
+
     Boolean qrFromImage;
 
     private static int RESULT_LOAD_IMAGE = 1;
@@ -87,8 +84,7 @@ public class AddProduct extends AppCompatActivity {
         SpinFirstType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                final String newValue = (String) SpinFirstType.getItemAtPosition(position);
-                FirstType = newValue;
+                FirstType = (String) SpinFirstType.getItemAtPosition(position);
                 getSecondType(FirstType);
             }
 
@@ -100,8 +96,7 @@ public class AddProduct extends AppCompatActivity {
         SpinSecondType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                final String newValue = (String) SpinSecondType.getItemAtPosition(position);
-                SecondType = newValue;
+                SecondType  = (String) SpinSecondType.getItemAtPosition(position);
             }
 
             @Override
@@ -112,7 +107,7 @@ public class AddProduct extends AppCompatActivity {
     }
 
     private void getFirstType() {
-        database = FirebaseDatabase.getInstance();
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
@@ -136,7 +131,6 @@ public class AddProduct extends AppCompatActivity {
 
     private void getSecondType(String sFirstType) {
 
-        database = FirebaseDatabase.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child(sFirstType);
 
@@ -217,9 +211,14 @@ public class AddProduct extends AppCompatActivity {
 
         if (!inputValue.equals("")) {
             WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-            Display display = manager.getDefaultDisplay();
+            Display display = null;
+            if (manager != null) {
+                display = manager.getDefaultDisplay();
+            }
             Point point = new Point();
-            display.getSize(point);
+            if (display != null) {
+                display.getSize(point);
+            }
             int width = point.x;
             int height = point.y;
             int smallerDimension = width < height ? width : height;
@@ -230,7 +229,7 @@ public class AddProduct extends AppCompatActivity {
             try {
                 bitmap = qrgEncoder.encodeAsBitmap();
 
-            } catch (WriterException e) {
+            } catch (WriterException ignored) {
 
             }
         }
@@ -314,7 +313,9 @@ public class AddProduct extends AppCompatActivity {
             }
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            if (bm != null) {
+                bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            }
             final byte[] dataa = baos.toByteArray();
 
             final StorageReference mStorageRef;
@@ -404,11 +405,10 @@ public class AddProduct extends AppCompatActivity {
                     s = FirstType.substring(0, 3) + SecondType.substring(0, 3);
                 }
 
-                myRef.child(s + String.valueOf(count)).setValue(product);
+                myRef.child(s + String.valueOf(count+1)).setValue(product);
                 Toast.makeText(getApplicationContext(), "FEITO",
                         Toast.LENGTH_LONG).show();
                 progress.dismiss();
-                return;
             }
 
             @Override

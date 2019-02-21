@@ -22,30 +22,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_Canadianas extends Fragment {
-    private StorageReference mStorageRef;
-    private FirebaseDatabase database;
-    private Long value;
-    private int img;
-    private String nome;
-    private String preco;
-    private String imgURL;
-    private String desc;
-    private Product productsTable = new Product();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         final View view = inflater.inflate(R.layout.fragment_productslist, container, false);
-        this.value = value;
-        database =FirebaseDatabase.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("Mobilidade").child("Canadianas");
 
@@ -54,15 +41,9 @@ public class Fragment_Canadianas extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Product> productsList = new ArrayList<>();
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                     Product productsTable = dataSnapshot1.getValue(Product.class);
-
-                    img = productsTable.getImg();
-                    nome = productsTable.getNome();
-                    preco = productsTable.getPreco();
-                    imgURL = productsTable.getImgURL();
-                    desc = productsTable.getDesc();
                     productsList.add(productsTable);
                 }
                 createProduct(productsList, view);
@@ -77,36 +58,34 @@ public class Fragment_Canadianas extends Fragment {
         return view;
     }
 
-    public void  createProduct(List<Product> productsList, View view){
+    public void createProduct(List<Product> productsList, View view) {
         Log.d("cena2", "aqui");
-        ListView mListView = (ListView) view.findViewById(R.id.listViewCalcado);
+        ListView mListView = view.findViewById(R.id.listViewCalcado);
         ArrayList<Product> productsListReady = new ArrayList<>();
-        for(int i=0; i<productsList.size(); i++){
-            Product products = new Product(productsList.get(i).getImg(),productsList.get(i).getNome(),productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc());
+        for (int i = 0; i < productsList.size(); i++) {
+            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc());
             productsListReady.add(products);
         }
         final ProductsListAdapter adapter = new ProductsListAdapter(getActivity(), R.layout.list_item, productsListReady);
         mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("position", String.valueOf(position));
-                Log.d("id", String.valueOf(id));
-                String nome =  adapter.getItem(position).getNome();
+
+                String nome = adapter.getItem(position).getNome();
                 Toast.makeText(getActivity(), nome, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), DetailProduct.class);
                 intent.putExtra("nome", adapter.getItem(position).getNome());
                 intent.putExtra("preco", adapter.getItem(position).getPreco());
                 intent.putExtra("imgURL", adapter.getItem(position).getImgURL());
                 intent.putExtra("BigDesc", adapter.getItem(position).getDesc());
-                Log.d("imgURL", adapter.getItem(position).getImgURL());
+
                 startActivity(intent);
             }
 
 
         });
     }
-
 
 
 }
