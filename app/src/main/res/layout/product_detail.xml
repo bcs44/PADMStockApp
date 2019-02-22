@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        app:cardMaxElevation="15dp">
+        app:cardMaxElevation="@dimen/prodDetail_15">
 
 
         <RelativeLayout
@@ -46,19 +46,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="11dp"
-                android:layout_marginLeft="11dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginStart="@dimen/prodDetail_11"
+                android:layout_marginLeft="@dimen/prodDetail_11"
+                android:layout_marginBottom="@dimen/prodDetail_5"
                 android:layout_toEndOf="@+id/ivImage"
                 android:layout_toRightOf="@+id/ivImage"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="@dimen/prodDetail_5">
 
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/ignored"
                     android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
@@ -70,20 +70,22 @@
                 android:layout_height="100dp"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_launcher_background"
-                tools:ignore="VectorDrawableCompat" />
+                tools:ignore="VectorDrawableCompat"
+                android:contentDescription="@string/ignored" />
 
             <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="115dp"
                 android:layout_marginTop="60dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginStart="115dp">
 
                 <TextView
                     android:id="@+id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantidade:"
+                    android:text="@string/product_qtd"
                     android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
@@ -92,7 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="qtd" />
+                    android:text="@string/ignored"
+                    android:layout_marginStart="10dp" />
 
             </LinearLayout>
 
@@ -114,8 +117,8 @@
                     android:layout_marginEnd="131dp"
                     android:layout_marginRight="131dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Price"
-                    android:textSize="16dp" />
+                    android:text="@string/ignored"
+                    android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btnRemove"
@@ -152,8 +155,8 @@
                     android:layout_alignBottom="@+id/tvPrice"
                     android:layout_toStartOf="@+id/tvPrice"
                     android:layout_toLeftOf="@+id/tvPrice"
-                    android:text="€"
-                    android:textSize="16dp" />
+                    android:text="@string/euro"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -173,7 +176,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:text="Texto" />
+            android:text="@string/ignored" />
     </LinearLayout>
 
 

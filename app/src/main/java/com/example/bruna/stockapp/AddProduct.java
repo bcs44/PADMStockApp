@@ -116,7 +116,9 @@ public class AddProduct extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    arrayListFirstType.add(dataSnapshot1.getKey());
+                    if(!dataSnapshot1.getKey().equals("Utilizadores")){
+                        arrayListFirstType.add(dataSnapshot1.getKey());
+                    }
                     addToSpinner(arrayListFirstType, SpinFirstType);
                 }
             }

@@ -42,7 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="57dp"
         android:entries="@array/exibCalcList"
-        android:prompt="@string/string_product_type_calcado"
+        android:prompt="@string/string_product_type_sec"
         android:spinnerMode="dialog"
         android:visibility="invisible"></Spinner>
 
@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/string_prodDesc"
             android:inputType="textMultiLine"
-            android:layout_width="fill_parent">
+            android:layout_width="fill_parent"
+            android:autofillHints="">
         </EditText>
 
 
@@ -66,7 +67,9 @@
             android:id="@+id/ProdPrice"
             android:layout_height="wrap_content"
             android:hint="@string/string_prodPrice"
-            android:layout_width="fill_parent">
+            android:layout_width="fill_parent"
+            android:autofillHints=""
+            android:inputType="">
         </EditText>
 
 

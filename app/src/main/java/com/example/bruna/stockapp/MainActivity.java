@@ -251,16 +251,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_talk) {
             Intent intent = new Intent(MainActivity.this, VoiceActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_add) {
             Intent intent = new Intent(MainActivity.this, AddProduct.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-            Intent intent = new Intent(MainActivity.this, Search.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_chat) {
 
         }
 

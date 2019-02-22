@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,11 +42,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraActivity"
-            android:label="@string/title_activity_detail_products"
+            android:label="@string/title_activity_camera"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GetBarCode"
-            android:label="@string/title_activity_detail_products"
+            android:label="@string/title_activity_qrCode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VoiceActivity"

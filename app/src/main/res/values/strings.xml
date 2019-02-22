@@ -1,34 +1,61 @@
 <resources>
     <string name="app_name">StockApp</string>
+    <string name="ignored">ignored</string>
+
+
+    <!-- Login -->
+    <string name="error_invalid_password">Esta password é muito curta</string>
+    <string name="action_logout">Logut</string>
+    <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="error_invalid_email">Este email é inválido</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="action_sign_in">Login</string>
+
+
+    <!-- Main -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="products">Productos</string>
-    <string name="title_activity_products">Productos</string>
-    <string name="title_activity_detail_products">Detalhe do Producto</string>
-    <string name="result_text_defautl">Por favor, focar camera no QR Code</string>
-    <string name="title_activity_add_products">Adicionar Produtos</string>
-    <string name="string_product_type">Tipo de Produto</string>
-    <string name="string_product_type_calcado">Tipo de Calçado</string>
-    <string name="string_prodDesc">Descrição Do Produto</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+
+    <!-- Add Product -->
+    <string name="string_product_type">Tipo de Produto Inicial</string>
+    <string name="string_product_type_sec">Tipo de Produto Secundário</string>
     <string name="string_prodName">Nome do Produto</string>
+    <string name="string_prodDesc">Descrição Do Produto</string>
     <string name="string_prodPrice">Preço do Produto</string>
     <string name="btn_save">Guardar</string>
-    <string name="adiciona_produtos">Adicionar Produtos</string>
-    <string name="btn_addQr">Adicionar QR Code</string>
+
+
+    <!-- Camera -->
+    <string name="result_text_defautl">Por favor, focar camera no QR Code</string>
+
+    <!-- Titulos -->
+    <string name="title_activity_products">Productos</string>
+    <string name="title_activity_detail_products">Detalhe do Producto</string>
+    <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_qrCode">Código QR</string>
     <string name="title_activity_voice">Pesquisa por Voz</string>
-    <string name="title_activity_login">Login</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Login</string>
-    <string name="action_sign_in_short">Login</string>
-    <string name="error_invalid_email">Este email é inválido</string>
-    <string name="error_invalid_password">Esta password é muito curta</string>
-    <string name="error_incorrect_password">Esta password está incorreta</string>
-    <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="title_activity_add_products">Adicionar Produtos</string>
     <string name="title_activity_search">Pesquisa por Voz</string>
-    <string name="action_logout">Logut</string>
+    <string name="title_activity_login">Login</string>
+
+
+    <!-- Detail Product -->
+    <string name="product_qtd">Quantidade:</string>
+    <string name="euro">€</string>
+
+
+    <!-- Menu Main -->
+    <string name="menu_products">Produtos</string>
+    <string name="pesquisa_por_voz">Pesquisa Por Voz</string>
+    <string name="menu_adiciona_produtos">Adicionar Produtos</string>
+    <string name="menu_comunicacao">Comunicação</string>
+    <string name="menu_chat">Chat</string>
+
+
 </resources>

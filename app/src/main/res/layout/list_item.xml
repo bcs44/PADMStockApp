@@ -24,7 +24,6 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="TextView1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:id="@+id/textView1"
@@ -41,7 +40,6 @@
 
         <TextView
             android:gravity="center"
-            android:text="TextView2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/textView2"/>
