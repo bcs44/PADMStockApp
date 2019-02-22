@@ -29,6 +29,7 @@
     <string name="string_prodDesc">Descrição Do Produto</string>
     <string name="string_prodPrice">Preço do Produto</string>
     <string name="btn_save">Guardar</string>
+    <string name="string_prodQtd">Quantidade do Produto</string>
 
 
     <!-- Camera -->
@@ -56,6 +57,7 @@
     <string name="menu_adiciona_produtos">Adicionar Produtos</string>
     <string name="menu_comunicacao">Comunicação</string>
     <string name="menu_chat">Chat</string>
+
 
 
 </resources>

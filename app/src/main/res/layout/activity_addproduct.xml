@@ -72,6 +72,15 @@
             android:inputType="">
         </EditText>
 
+    <EditText
+        android:id="@+id/ProdQtd"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_prodQtd"
+        android:layout_width="fill_parent"
+        android:autofillHints=""
+        android:inputType="">
+    </EditText>
+
 
         <Button
             android:id="@+id/BtnSave"

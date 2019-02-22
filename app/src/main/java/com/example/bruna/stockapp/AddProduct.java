@@ -45,7 +45,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 public class AddProduct extends AppCompatActivity {
 
     Spinner SpinFirstType, SpinSecondType;
-    EditText ProdNameET, ProdDescET, ProdPriceET;
+    EditText ProdNameET, ProdDescET, ProdPriceET, ProdQtdET;
     Button BtnSave;
     List<String> arrayListFirstType = new ArrayList<>();
     List<String> arrayListSecondType = new ArrayList<>();
@@ -74,6 +74,7 @@ public class AddProduct extends AppCompatActivity {
         ProdNameET = findViewById(R.id.ProdName);
         ProdDescET = findViewById(R.id.ProdDesc);
         ProdPriceET = findViewById(R.id.ProdPrice);
+        ProdQtdET = findViewById(R.id.ProdQtd);
         BtnSave = findViewById(R.id.BtnSave);
         SpinFirstType = findViewById(R.id.SpinFirstType);
         SpinSecondType = findViewById(R.id.SpinSecondType);
@@ -96,7 +97,7 @@ public class AddProduct extends AppCompatActivity {
         SpinSecondType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                SecondType  = (String) SpinSecondType.getItemAtPosition(position);
+                SecondType = (String) SpinSecondType.getItemAtPosition(position);
             }
 
             @Override
@@ -116,7 +117,7 @@ public class AddProduct extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    if(!dataSnapshot1.getKey().equals("Utilizadores")){
+                    if (!dataSnapshot1.getKey().equals("Utilizadores")) {
                         arrayListFirstType.add(dataSnapshot1.getKey());
                     }
                     addToSpinner(arrayListFirstType, SpinFirstType);
@@ -159,35 +160,42 @@ public class AddProduct extends AppCompatActivity {
         String name = String.valueOf(ProdNameET.getText());
         String desc = String.valueOf(ProdDescET.getText());
         String price = String.valueOf(ProdPriceET.getText());
+        String qtd = String.valueOf(ProdQtdET.getText());
+
 
         if (!name.equals("")) {
             if (!desc.equals("")) {
                 if (!price.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    if (!qtd.equals("")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                    builder.setTitle("Código Qr");
-                    builder.setMessage("Quer criar código QR?");
+                        builder.setTitle("Código Qr");
+                        builder.setMessage("Quer criar código QR?");
 
-                    builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface dialog, int which) {
-                            progress.show();
-                            addQRCode();
-                            dialog.dismiss();
-                        }
-                    });
+                            public void onClick(DialogInterface dialog, int which) {
+                                progress.show();
+                                addQRCode();
+                                dialog.dismiss();
+                            }
+                        });
 
-                    builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
 
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            createDialogImage(false);
-                            dialog.dismiss();
-                        }
-                    });
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                createDialogImage(false);
+                                dialog.dismiss();
+                            }
+                        });
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Inserir Quantidade",
+                                Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Inserir Preço",
                             Toast.LENGTH_LONG).show();
@@ -206,9 +214,8 @@ public class AddProduct extends AppCompatActivity {
 
         String name = String.valueOf(ProdNameET.getText());
         String desc = String.valueOf(ProdDescET.getText());
-        String price = String.valueOf(ProdPriceET.getText());
 
-        String inputValue = name + "&sep&" + desc + "&sep&" + price;
+        String inputValue = name + "&sep&" + desc ;
 
 
         if (!inputValue.equals("")) {
@@ -385,6 +392,7 @@ public class AddProduct extends AppCompatActivity {
         product.setNome(String.valueOf(ProdNameET.getText()));
         product.setDesc(String.valueOf(ProdDescET.getText()));
         product.setPreco(String.valueOf(ProdPriceET.getText()));
+        product.setQtd(String.valueOf(ProdQtdET.getText()));
 
         final DatabaseReference myRef;
 
@@ -407,7 +415,7 @@ public class AddProduct extends AppCompatActivity {
                     s = FirstType.substring(0, 3) + SecondType.substring(0, 3);
                 }
 
-                myRef.child(s + String.valueOf(count+1)).setValue(product);
+                myRef.child(s + String.valueOf(count + 1)).setValue(product);
                 Toast.makeText(getApplicationContext(), "FEITO",
                         Toast.LENGTH_LONG).show();
                 progress.dismiss();
