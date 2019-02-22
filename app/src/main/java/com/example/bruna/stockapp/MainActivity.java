@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +16,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    TextView boxTv;
+    TextView moneyTv;
+    List<String> arrayListFirstType = new ArrayList<>();
+    List<String> arrayListSecondType = new ArrayList<>();
+
+    int stockUni;
+    int stockMoney;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +74,112 @@ public class MainActivity extends AppCompatActivity
 
     private void changeStockDataMain() {
 
-        TextView boxTv = findViewById(R.id.textViewBox);
-        TextView moneyTv = findViewById(R.id.textViewMoney);
-        TextView titleTv = findViewById(R.id.textViewTitle);
+        boxTv = findViewById(R.id.textViewBox);
+        moneyTv = findViewById(R.id.textViewMoney);
 
-        boxTv.setText("Aqui fica o valor em stock de tudo");
-        moneyTv.setText("Aqui fica o valor em stock em euros");
-        titleTv.setText("Aqui fica o titulo");
+        //boxTv.setText("Aqui fica o valor em stock de tudo");
+       // moneyTv.setText("Aqui fica o valor em stock em euros");
+
+        stockUni = 0;
+        stockMoney = 0;
+
+        stockFirst();
+
+        Log.d("w", String.valueOf(stockMoney));
+
     }
+
+    private void stockFirst() {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    arrayListFirstType.add(dataSnapshot1.getKey());
+                }
+                doTheRestSecondType();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w("Value", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private void doTheRestSecondType() {
+
+        for (int i = 0; i < arrayListFirstType.size(); i++) {
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference().child(arrayListFirstType.get(i));
+            final int finalI = i;
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    arrayListSecondType = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        arrayListSecondType.add(dataSnapshot1.getKey());
+                    }
+                    doTheRest(arrayListFirstType.get(finalI));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("Value", "Failed to read value.", error.toException());
+                }
+            });
+        }
+
+    }
+
+    private void doTheRest(String firstType) {
+
+
+        for (int i = 0; i < arrayListSecondType.size(); i++) {
+            DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child(firstType).child(arrayListSecondType.get(i));
+
+            mFirebaseDatabaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    List<Product> productsList = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        Product productsTable = dataSnapshot1.getValue(Product.class);
+                        productsList.add(productsTable);
+                    }
+                    createValuesStockAndPrice(productsList);
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w("Value", "Failed to read value.", error.toException());
+                }
+            });
+
+        }
+    }
+
+    private void createValuesStockAndPrice(List<Product> productsList) {
+
+        String preco;
+
+        for (int i = 0; i < productsList.size(); i++) {
+            preco = productsList.get(i).getPreco().split(",")[0];
+            stockUni = stockUni + Integer.valueOf(productsList.get(i).getQtd());
+            stockMoney = stockMoney + Integer.valueOf(preco);
+        }
+
+        boxTv.setText("Existem " + stockUni + " unidades em stock");
+        moneyTv.setText("O Stock contém " + stockMoney + "€");
+
+    }
+
 
 
     @Override

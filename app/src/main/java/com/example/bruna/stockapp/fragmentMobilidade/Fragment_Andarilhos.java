@@ -73,8 +73,6 @@ public class Fragment_Andarilhos extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String nome = adapter.getItem(position).getNome();
-                Toast.makeText(getActivity(), nome, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), DetailProduct.class);
                 intent.putExtra("nome", adapter.getItem(position).getNome());
                 intent.putExtra("preco", adapter.getItem(position).getPreco());
