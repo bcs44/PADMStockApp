@@ -114,6 +114,14 @@ public class CameraActivity extends AppCompatActivity {
                         public void run() {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
+                            String result = qrcodes.valueAt(0).displayValue;
+                            String nome = result.split("&sep&")[0];
+                            String desc = result.split("&sep&")[1];
+
+                            Intent intent = new Intent(CameraActivity.this, Search.class);
+                            intent.putExtra("SearchString", nome);
+                            startActivity(intent);
+
                             txtResult.setText(qrcodes.valueAt(0).displayValue);
                         }
                     });
