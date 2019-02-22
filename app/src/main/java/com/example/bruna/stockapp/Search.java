@@ -76,7 +76,11 @@ public class Search extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         arrayListSecondType.add(dataSnapshot1.getKey());
                     }
-                    doTheRest(arrayListFirstType.get(finalI), search);
+                    if(!arrayListFirstType.get(finalI).equals("Utilizadores")){
+                        doTheRest(arrayListFirstType.get(finalI), search);
+                    }
+
+
                 }
 
                 @Override
