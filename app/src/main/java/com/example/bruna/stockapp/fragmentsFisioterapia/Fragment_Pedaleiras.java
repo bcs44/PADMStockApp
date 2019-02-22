@@ -58,7 +58,7 @@ public class Fragment_Pedaleiras extends Fragment {
         ListView mListView = view.findViewById(R.id.listViewCalcado);
         ArrayList<Product> productsListReady = new ArrayList<>();
         for (int i = 0; i < productsList.size(); i++) {
-            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc());
+            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd());
             productsListReady.add(products);
         }
         final ProductsListAdapter adapter = new ProductsListAdapter(getActivity(), R.layout.list_item, productsListReady);
@@ -74,6 +74,8 @@ public class Fragment_Pedaleiras extends Fragment {
                 intent.putExtra("preco", adapter.getItem(position).getPreco());
                 intent.putExtra("imgURL", adapter.getItem(position).getImgURL());
                 intent.putExtra("BigDesc", adapter.getItem(position).getDesc());
+                intent.putExtra("quantidade", adapter.getItem(position).getQtd());
+
                 startActivity(intent);
             }
 

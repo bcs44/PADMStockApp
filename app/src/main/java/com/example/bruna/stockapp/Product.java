@@ -7,6 +7,28 @@ public class Product {
     private String imgURL;
     private String desc;
     private String QRCode;
+    private String Qtd;
+
+    public Product() {
+
+    }
+
+    public Product(int img, String nome, String preco, String imgURL, String desc, String Qtd) {
+        this.img = img;
+        this.nome = nome;
+        this.preco = preco;
+        this.imgURL = imgURL;
+        this.desc = desc;
+        this.Qtd = Qtd;
+    }
+
+    public String getQtd() {
+        return Qtd;
+    }
+
+    public void setQtd(String qtd) {
+        Qtd = qtd;
+    }
 
     public String getQRCode() {
         return QRCode;
@@ -14,15 +36,6 @@ public class Product {
 
     public void setQRCode(String QRCode) {
         this.QRCode = QRCode;
-    }
-
-    public Product() {}
-    public Product(int img, String nome,  String preco, String imgURL, String desc) {
-        this.img = img;
-        this.nome = nome;
-        this.preco = preco;
-        this.imgURL = imgURL;
-        this.desc = desc;
     }
 
     public String getImgURL() {
@@ -56,6 +69,7 @@ public class Product {
     public void setPreco(String preco) {
         this.preco = preco;
     }
+
     public String getDesc() {
         return desc;
     }
