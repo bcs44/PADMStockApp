@@ -155,6 +155,9 @@ public class LoginActivity extends AppCompatActivity {
             if (usersList.get(i).getEmail().equals(email)){
                 if (usersList.get(i).getPassword().equals(password)){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("nome", usersList.get(i).getNome());
+                    intent.putExtra("email", usersList.get(i).getEmail());
+                    intent.putExtra("imgURL", usersList.get(i).getImgURL());
                     startActivity(intent);
                     exist = true;
                 }

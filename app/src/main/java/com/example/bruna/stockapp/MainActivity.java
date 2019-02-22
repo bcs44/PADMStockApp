@@ -14,8 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,10 +39,26 @@ public class MainActivity extends AppCompatActivity
     int stockMoney;
 
 
+    TextView tvNome;
+    TextView tvEmail;
+    ImageView imageUser;
+    String nome;
+    String email;
+    String imgURL;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent myIntent = getIntent();
+        nome = myIntent.getStringExtra("nome");
+        email = myIntent.getStringExtra("email");
+        imgURL = myIntent.getStringExtra("imgURL");
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +83,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        View headerView = navigationView.getHeaderView(0);
+        tvNome = headerView.findViewById(R.id.tvNome);
+        tvEmail = headerView.findViewById(R.id.tvEmail);
+        imageUser  = headerView.findViewById(R.id.imageView);
+        tvNome.setText(nome);
+        tvEmail.setText(email);
+
+        Glide.with(getApplicationContext()).load(imgURL).into(imageUser);
 
         changeStockDataMain();
 
@@ -204,8 +231,9 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

@@ -6,18 +6,27 @@ public class User {
     String nome;
     String password;
     String username;
+    String imgURL;
 
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public User( String email, String nome, String password, String username) {
+    public User( String email, String nome, String password, String username,  String imgURL) {
         this.email = email;
         this.nome = nome;
         this.password = password;
         this.username = username;
+        this.imgURL = imgURL;
     }
 
     public User() {
