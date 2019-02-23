@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     String nome;
     String email;
     String imgURL;
-
+    String filial;
 
 
     @Override
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         nome = myIntent.getStringExtra("nome");
         email = myIntent.getStringExtra("email");
         imgURL = myIntent.getStringExtra("imgURL");
-
+        filial = myIntent.getStringExtra("filial");
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         tvNome = headerView.findViewById(R.id.tvNome);
         tvEmail = headerView.findViewById(R.id.tvEmail);
-        imageUser  = headerView.findViewById(R.id.imageView);
+        imageUser = headerView.findViewById(R.id.imageView);
         tvNome.setText(nome);
         tvEmail.setText(email);
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         moneyTv = findViewById(R.id.textViewMoney);
 
         //boxTv.setText("Aqui fica o valor em stock de tudo");
-       // moneyTv.setText("Aqui fica o valor em stock em euros");
+        // moneyTv.setText("Aqui fica o valor em stock em euros");
 
         stockUni = 0;
         stockMoney = 0;
@@ -151,8 +151,10 @@ public class MainActivity extends AppCompatActivity
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         arrayListSecondType.add(dataSnapshot1.getKey());
                     }
-                    if(!arrayListFirstType.get(finalI).equals("Utilizadores")){
-                        doTheRest(arrayListFirstType.get(finalI));
+                    if (!arrayListFirstType.get(finalI).equals("Utilizadores")) {
+                        if (!arrayListFirstType.get(finalI).equals("Chat")) {
+                            doTheRest(arrayListFirstType.get(finalI));
+                        }
                     }
 
                 }
@@ -209,7 +211,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -255,7 +256,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, AddProduct.class);
             startActivity(intent);
         } else if (id == R.id.nav_chat) {
-
+            Intent intent = new Intent(MainActivity.this, Chat_Room.class);
+            intent.putExtra("room_name", "Chat");
+            intent.putExtra("user_name", nome);
+            intent.putExtra("filial", filial);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

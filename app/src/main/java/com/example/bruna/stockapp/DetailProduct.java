@@ -21,7 +21,7 @@ public class DetailProduct extends AppCompatActivity {
         String preco = myIntent.getStringExtra("preco");
         String imgUrl = myIntent.getStringExtra("imgURL");
         String bigDesc = myIntent.getStringExtra("BigDesc");
-        String qtd = myIntent.getStringExtra("quantidade");
+        String Qtd = myIntent.getStringExtra("quantidade");
 
         TextView tvname = findViewById(R.id.tvName);
         TextView bigdesc = findViewById(R.id.tvbigdesc);
@@ -31,7 +31,7 @@ public class DetailProduct extends AppCompatActivity {
         bigdesc.setText(bigDesc);
         tvname.setText(nome);
         tvpreco.setText(preco);
-        tvpqtd.setText(qtd);
+        tvpqtd.setText(Qtd);
 
         Glide.with(getApplicationContext()).load(imgUrl).into(image);
 

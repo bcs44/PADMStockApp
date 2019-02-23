@@ -7,6 +7,15 @@ public class User {
     String password;
     String username;
     String imgURL;
+    String filial;
+
+    public String getFilial() {
+        return filial;
+    }
+
+    public void setFilial(String filial) {
+        this.filial = filial;
+    }
 
     public String getImgURL() {
         return imgURL;

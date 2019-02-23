@@ -160,13 +160,13 @@ public class AddProduct extends AppCompatActivity {
         String name = String.valueOf(ProdNameET.getText());
         String desc = String.valueOf(ProdDescET.getText());
         String price = String.valueOf(ProdPriceET.getText());
-        String qtd = String.valueOf(ProdQtdET.getText());
+        String Qtd = String.valueOf(ProdQtdET.getText());
 
 
         if (!name.equals("")) {
             if (!desc.equals("")) {
                 if (!price.equals("")) {
-                    if (!qtd.equals("")) {
+                    if (!Qtd.equals("")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                         builder.setTitle("Código Qr");

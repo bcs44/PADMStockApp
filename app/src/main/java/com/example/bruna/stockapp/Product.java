@@ -27,7 +27,7 @@ public class Product {
     }
 
     public void setQtd(String qtd) {
-        Qtd = qtd;
+        Qtd = Qtd;
     }
 
     public String getQRCode() {

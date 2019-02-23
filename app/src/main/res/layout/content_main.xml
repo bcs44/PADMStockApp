@@ -8,29 +8,32 @@
         android:id="@+id/left"
         android:layout_width="250dp"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
+        android:layout_marginEnd="@android:dimen/thumbnail_width"
         android:layout_marginRight="@android:dimen/thumbnail_width"
         android:layout_marginBottom="0dp"
         android:contentDescription="@string/ignored"
-        android:src="@drawable/money"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="@android:dimen/thumbnail_width" />
+        android:paddingRight="35dp"
+        android:src="@drawable/money" />
 
     <ImageView
         android:id="@+id/right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="@android:dimen/thumbnail_width"
-        android:layout_marginRight="10dp"
-        android:contentDescription="@string/ignored"
-        android:src="@drawable/box"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginStart="@android:dimen/thumbnail_width"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginLeft="@android:dimen/thumbnail_width"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:contentDescription="@string/ignored"
+        android:paddingLeft="35dp"
+        android:src="@drawable/box" />
 
     <TextView
         android:id="@+id/textViewBox"

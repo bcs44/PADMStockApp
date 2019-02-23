@@ -158,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("nome", usersList.get(i).getNome());
                     intent.putExtra("email", usersList.get(i).getEmail());
                     intent.putExtra("imgURL", usersList.get(i).getImgURL());
+                    intent.putExtra("filial", usersList.get(i).getFilial());
                     startActivity(intent);
                     exist = true;
                 }

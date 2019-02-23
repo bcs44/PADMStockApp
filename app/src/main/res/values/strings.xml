@@ -5,7 +5,7 @@
 
     <!-- Login -->
     <string name="error_invalid_password">Esta password é muito curta</string>
-    <string name="action_logout">Logut</string>
+    <string name="action_logout">Logout</string>
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_email">Este email é inválido</string>
     <string name="prompt_email">Email</string>
@@ -43,7 +43,9 @@
     <string name="title_activity_voice">Pesquisa por Voz</string>
     <string name="title_activity_add_products">Adicionar Produtos</string>
     <string name="title_activity_search">Pesquisa por Voz</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">StockApp</string>
+    <string name="title_activity_chat">Chat</string>
+
 
 
     <!-- Detail Product -->
@@ -58,6 +60,9 @@
     <string name="menu_comunicacao">Comunicação</string>
     <string name="menu_chat">Chat</string>
 
+
+    <!-- Chat_Room -->
+    <string name="chat_enviar">Enviar</string>
 
 
 </resources>
