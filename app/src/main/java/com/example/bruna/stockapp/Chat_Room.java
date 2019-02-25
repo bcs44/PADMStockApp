@@ -1,8 +1,12 @@
 package com.example.bruna.stockapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,6 +63,7 @@ public class Chat_Room extends AppCompatActivity {
                 Map<String, Object> map2 = new HashMap<String, Object>();
                 map2.put("name", user_name);
                 map2.put("msg", input_msg.getText().toString());
+                input_msg.setText("");
 
                 message_root.updateChildren(map2);
 
@@ -92,6 +97,10 @@ public class Chat_Room extends AppCompatActivity {
 
             }
         });
+
+
+    //    Toolbar toolbar = findViewById(R.id.toolbar);
+      //  setSupportActionBar(toolbar);
     }
 
     private String chat_msg, chat_user_name;
@@ -107,6 +116,31 @@ public class Chat_Room extends AppCompatActivity {
             chat_conversation.append(chat_user_name+ " : "+chat_msg+"\n");
         }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        if (id == R.id.action_delete) {
+            root = FirebaseDatabase.getInstance().getReference().child(room_name);
+            root.setValue("");
+            chat_conversation.setText("");
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
 
 

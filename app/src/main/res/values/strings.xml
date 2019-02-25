@@ -65,7 +65,7 @@
     <!-- Chat_Room -->
     <string name="chat_enviar">Enviar</string>
     <string name="product_detail_Qr">Ver Código QR</string>
-
+    <string name="apagar">Apagar Conversa</string>
 
 
 </resources>
