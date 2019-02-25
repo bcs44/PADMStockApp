@@ -51,6 +51,7 @@
     <!-- Detail Product -->
     <string name="product_qtd">Quantidade:</string>
     <string name="euro">€</string>
+    <string name="guarda_na_galeria">Guardar na Galeria</string>
 
 
     <!-- Menu Main -->
@@ -63,6 +64,8 @@
 
     <!-- Chat_Room -->
     <string name="chat_enviar">Enviar</string>
+    <string name="product_detail_Qr">Ver Código QR</string>
+
 
 
 </resources>

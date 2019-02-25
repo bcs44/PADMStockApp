@@ -128,7 +128,7 @@ public class Search extends AppCompatActivity {
         ArrayList<Product> productsListReady = new ArrayList<>();
 
         for (int i = 0; i < productsList.size(); i++) {
-            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd());
+            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd(), productsList.get(i).getQRCode());
             productsListReady.add(products);
         }
 

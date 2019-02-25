@@ -1,11 +1,9 @@
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/gradient">
-
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
 
 
     <android.support.design.widget.AppBarLayout
@@ -13,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -35,7 +32,7 @@
         android:layout_width="fill_parent"
         android:layout_height="69dp"
         android:prompt="@string/string_product_type"
-        android:spinnerMode="dialog"></Spinner>
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:id="@+id/SpinSecondType"
@@ -44,52 +41,45 @@
         android:entries="@array/exibCalcList"
         android:prompt="@string/string_product_type_sec"
         android:spinnerMode="dialog"
-        android:visibility="invisible"></Spinner>
+        android:visibility="invisible" />
 
-        <EditText
-            android:id="@+id/ProdName"
-            android:layout_height="wrap_content"
-            android:hint="@string/string_prodName"
-            android:layout_width="fill_parent">
-        </EditText>
+    <EditText
+        android:id="@+id/ProdName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_prodName"
+         />
 
-        <EditText
-            android:id="@+id/ProdDesc"
-            android:layout_height="wrap_content"
-            android:hint="@string/string_prodDesc"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"
-            android:autofillHints="">
-        </EditText>
+    <EditText
+        android:id="@+id/ProdDesc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_prodDesc"
+        android:inputType="textMultiLine" />
 
 
-        <EditText
-            android:id="@+id/ProdPrice"
-            android:layout_height="wrap_content"
-            android:hint="@string/string_prodPrice"
-            android:layout_width="fill_parent"
-            android:autofillHints=""
-            android:inputType="">
-        </EditText>
+    <EditText
+        android:id="@+id/ProdPrice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/string_prodPrice"
+        android:inputType="" />
+
 
     <EditText
         android:id="@+id/ProdQtd"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/string_prodQtd"
+        android:inputType="" />
+
+
+    <Button
+        android:id="@+id/BtnSave"
         android:layout_width="fill_parent"
-        android:autofillHints=""
-        android:inputType="">
-    </EditText>
-
-
-        <Button
-            android:id="@+id/BtnSave"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_save"
-            android:onClick="createDialogQR"
-            android:layout_width="fill_parent">
-        </Button>
-
+        android:layout_height="wrap_content"
+        android:onClick="createDialogQR"
+        android:text="@string/btn_save" />
 
 
 </LinearLayout>

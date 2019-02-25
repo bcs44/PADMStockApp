@@ -63,7 +63,7 @@ public class Fragment_Canadianas extends Fragment {
         ListView mListView = view.findViewById(R.id.listViewCalcado);
         ArrayList<Product> productsListReady = new ArrayList<>();
         for (int i = 0; i < productsList.size(); i++) {
-            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd());
+            Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd(), productsList.get(i).getQRCode());
             productsListReady.add(products);
         }
         final ProductsListAdapter adapter = new ProductsListAdapter(getActivity(), R.layout.list_item, productsListReady);
@@ -78,6 +78,7 @@ public class Fragment_Canadianas extends Fragment {
                 intent.putExtra("imgURL", adapter.getItem(position).getImgURL());
                 intent.putExtra("BigDesc", adapter.getItem(position).getDesc());
                 intent.putExtra("quantidade", adapter.getItem(position).getQtd());
+                intent.putExtra("qrURL", adapter.getItem(position).getQRCode());
 
                 startActivity(intent);
             }
