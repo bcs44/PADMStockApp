@@ -1,5 +1,6 @@
 package com.example.bruna.stockapp;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,9 +20,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -418,7 +422,10 @@ public class AddProduct extends AppCompatActivity {
                 myRef.child(s + String.valueOf(count + 1)).setValue(product);
                 Toast.makeText(getApplicationContext(), "FEITO",
                         Toast.LENGTH_LONG).show();
+
                 progress.dismiss();
+                openDialog(product);
+
             }
 
             @Override
@@ -426,6 +433,38 @@ public class AddProduct extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void openDialog(Product product) {
+
+        final Dialog dialog = new Dialog(AddProduct.this);
+        dialog.setContentView(R.layout.dialog_product_created);
+        dialog.setTitle("Produto Criado");
+       // dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        // set the custom dialog components - text, image and button
+        TextView tvName = (TextView) dialog.findViewById(R.id.tvName);
+        tvName.setText(product.getNome());
+        ImageView ivImage = (ImageView) dialog.findViewById(R.id.ivImage);
+        Glide.with(getApplicationContext()).load(product.getImgURL()).into(ivImage);
+
+
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        // if button is clicked, close the custom dialog
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProdNameET.setText("");
+                ProdDescET.setText("");
+                ProdPriceET.setText("");
+                ProdQtdET.setText("");
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
     }
 
     private void addToSpinner(List<String> arrayList, Spinner spin) {
