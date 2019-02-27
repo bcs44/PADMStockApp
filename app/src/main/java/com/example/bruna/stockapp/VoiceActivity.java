@@ -58,6 +58,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(VoiceActivity.this, Search.class);
                     intent.putExtra("SearchString", result.get(0));
+                    intent.putExtra("from", "Voice");
                     startActivity(intent);
                 }
                 break;

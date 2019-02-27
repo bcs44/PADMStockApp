@@ -54,7 +54,6 @@ public class VerQR extends AppCompatActivity {
             }
         });
 
-
         Glide.with(getApplicationContext()).load(qrURL).into(imageView);
 
 
@@ -71,7 +70,7 @@ public class VerQR extends AppCompatActivity {
                 Log.v("TAG", "Permission is revoked2");
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
             }
-        } else { //permission is automatically granted on sdk<23 upon installation
+        } else {
             Log.v("TAG", "Permission is granted2");
         }
     }
@@ -88,7 +87,7 @@ public class VerQR extends AppCompatActivity {
                 Log.v("TAG", "Permission is revoked1");
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
             }
-        } else { //permission is automatically granted on sdk<23 upon installation
+        } else {
             Log.v("TAG", "Permission is granted1");
         }
     }
@@ -102,7 +101,6 @@ public class VerQR extends AppCompatActivity {
                 Log.d("TAG", "External storage2");
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.v("TAG", "Permission: " + permissions[0] + "was " + grantResults[0]);
-                    //resume tasks needing this permission
                     isReadStoragePermissionGranted();
                 }
                 break;
@@ -137,8 +135,6 @@ public class VerQR extends AppCompatActivity {
             os.flush();
             os.close();
 
-            //isReadStoragePermissionGranted();
-
             scanFile(getApplicationContext(), Uri.fromFile(file));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -156,9 +152,8 @@ public class VerQR extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setDataAndType(uri, "*/*");
-        //intent.setDataAndType(myUri, "image/*");
         startActivity(Intent.createChooser(intent, "Open folder"));
-        //startActivity(intent);
+
     }
 
 }

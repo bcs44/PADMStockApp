@@ -25,14 +25,19 @@ public class Search extends AppCompatActivity {
     List<String> arrayListFirstType = new ArrayList<>();
     List<String> arrayListSecondType = new ArrayList<>();
     List<Product> productsList = new ArrayList<>();
-
+    String From, SearchString, SearchStringSecond;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        final String SearchString = getIntent().getStringExtra("SearchString");
+        SearchString = getIntent().getStringExtra("SearchString");
+        From = getIntent().getStringExtra("from");
+
+        if (From.equals("Camera")) {
+            SearchStringSecond = getIntent().getStringExtra("SearchStringSecond");
+        }
 
         search2(SearchString);
 
@@ -75,14 +80,12 @@ public class Search extends AppCompatActivity {
                     arrayListSecondType = new ArrayList<>();
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         arrayListSecondType.add(dataSnapshot1.getKey());
-                    }
-                    if (!arrayListFirstType.get(finalI).equals("Utilizadores")) {
-                        if (!arrayListFirstType.get(finalI).equals("Chat")) {
-                            doTheRest(arrayListFirstType.get(finalI), search);
+                        if (!arrayListFirstType.get(finalI).equals("Utilizadores")) {
+                            if (!arrayListFirstType.get(finalI).equals("Chat")) {
+                                doTheRest(arrayListFirstType.get(finalI), search);
+                            }
                         }
                     }
-
-
                 }
 
                 @Override
@@ -94,8 +97,13 @@ public class Search extends AppCompatActivity {
     }
 
     private void doTheRest(String firstType, String sSearch) {
-
-        String search = sSearch.substring(0, 1).toUpperCase() + sSearch.substring(1, sSearch.length());
+        String search;
+        if(From.equals("Voice")) {
+            search = sSearch.substring(0, 1).toUpperCase() + sSearch.substring(1, sSearch.length());
+        }
+        else{
+            search = sSearch;
+        }
 
         for (int i = 0; i < arrayListSecondType.size(); i++) {
             DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child(firstType).child(arrayListSecondType.get(i));
@@ -132,23 +140,46 @@ public class Search extends AppCompatActivity {
             productsListReady.add(products);
         }
 
-        final ProductsListAdapter adapter = new ProductsListAdapter(getApplicationContext(), R.layout.list_item, productsListReady);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String nome = adapter.getItem(position).getNome();
-                Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), DetailProduct.class);
-                intent.putExtra("nome", adapter.getItem(position).getNome());
-                intent.putExtra("preco", adapter.getItem(position).getPreco());
-                intent.putExtra("imgURL", adapter.getItem(position).getImgURL());
-                intent.putExtra("BigDesc", adapter.getItem(position).getDesc());
 
-                startActivity(intent);
+        if (From.equals("Camera")) {
+            SearchWithDesc(productsList);
+        } else {
+            final ProductsListAdapter adapter = new ProductsListAdapter(getApplicationContext(), R.layout.list_item, productsListReady);
+            mListView.setAdapter(adapter);
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String nome = adapter.getItem(position).getNome();
+                    Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), DetailProduct.class);
+                    intent.putExtra("nome", adapter.getItem(position).getNome());
+                    intent.putExtra("preco", adapter.getItem(position).getPreco());
+                    intent.putExtra("imgURL", adapter.getItem(position).getImgURL());
+                    intent.putExtra("BigDesc", adapter.getItem(position).getDesc());
+                    intent.putExtra("quantidade", adapter.getItem(position).getQtd());
+                    intent.putExtra("qrURL", adapter.getItem(position).getQRCode());
+
+                    startActivity(intent);
+                }
+
+
+            });
+        }
+    }
+
+    private void SearchWithDesc(List<Product> productsList) {
+
+        List<Product> productsListReady = new ArrayList<>();
+
+        for (int i = 0; i < productsList.size(); i++) {
+            if (productsList.get(i).getDesc().equals(SearchStringSecond)) {
+                Product products = new Product(productsList.get(i).getImg(), productsList.get(i).getNome(), productsList.get(i).getPreco(), productsList.get(i).getImgURL(), productsList.get(i).getDesc(), productsList.get(i).getQtd(), productsList.get(i).getQRCode());
+                productsListReady.add(products);
+                From = "Voice";
+                createProduct(productsListReady);
+                return;
             }
 
-
-        });
+        }
     }
 }

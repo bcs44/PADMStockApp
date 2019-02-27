@@ -31,6 +31,7 @@ public class CameraActivity extends AppCompatActivity {
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
+    Boolean entrou = false;
 
 
     @Override
@@ -58,8 +59,8 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
 
-        cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
-        txtResult = (TextView) findViewById(R.id.txtResult);
+        cameraPreview = findViewById(R.id.cameraPreview);
+        txtResult = findViewById(R.id.txtResult);
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE)
@@ -87,7 +88,7 @@ public class CameraActivity extends AppCompatActivity {
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-              //  cameraSource.stop();
+
             }
 
             @Override
@@ -109,20 +110,32 @@ public class CameraActivity extends AppCompatActivity {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
 
                 if(qrcodes.size() != 0){
+
                     txtResult.post(new Runnable() {
                         @Override
                         public void run() {
-                            Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(100);
-                            String result = qrcodes.valueAt(0).displayValue;
-                            String nome = result.split("&sep&")[0];
-                            String desc = result.split("&sep&")[1];
+                            cameraSource.release();
 
-                            Intent intent = new Intent(CameraActivity.this, Search.class);
-                            intent.putExtra("SearchString", nome);
-                            startActivity(intent);
+                            if(entrou){
+                                return;
+                            }
+                            else{
+                                Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                vibrator.vibrate(100);
+                                String result = qrcodes.valueAt(0).displayValue;
+                                String nome = result.split("&sep&")[0];
+                                String desc = result.split("&sep&")[1];
 
-                            txtResult.setText(qrcodes.valueAt(0).displayValue);
+                                Intent intent = new Intent(CameraActivity.this, Search.class);
+                                intent.putExtra("SearchString", nome);
+                                intent.putExtra("SearchStringSecond", desc);
+                                intent.putExtra("from", "Camera");
+                                startActivity(intent);
+
+                                txtResult.setText(qrcodes.valueAt(0).displayValue);
+                            }
+
+
                         }
                     });
                 }

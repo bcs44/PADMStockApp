@@ -68,7 +68,7 @@
             android:label="@string/title_activity_chat"></activity>
         <activity
             android:name=".VerQR"
-            android:label="@string/title_activity_chat"></activity>
+            android:label="@string/title_activity_qrCode"></activity>
     </application>
 
 </manifest>
