@@ -37,11 +37,9 @@ public class GetBarCode extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000) {
             if (resultCode == RESULT_OK) {
-                // Handle successful scan
                 tvCode.setText(data.getStringExtra("SCAN_RESULT"));
                 tvFormat.setText(data.getStringExtra("SCAN_RESULT_FORMAT"));
             } else if (resultCode == RESULT_CANCELED) {
-                // Handle cancel
                 tvCode.setText("");
             }
         }
