@@ -30,7 +30,7 @@ public class User {
         this.password = password;
     }
 
-    public User( String email, String nome, String password, String username,  String imgURL) {
+    public User(String email, String nome, String password, String username, String imgURL) {
         this.email = email;
         this.nome = nome;
         this.password = password;

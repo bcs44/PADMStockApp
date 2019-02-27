@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.bruna.stockapp.DetailProduct;
 import com.example.bruna.stockapp.Product;
@@ -22,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +46,7 @@ public class Fragment_OrtTroncoCabeca extends Fragment {
                 createProduct(productsList, view);
 
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
                 Log.w("Value", "Failed to read value.", error.toException());

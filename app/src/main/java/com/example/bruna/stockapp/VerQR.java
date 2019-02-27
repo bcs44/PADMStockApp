@@ -40,15 +40,12 @@ public class VerQR extends AppCompatActivity {
         String qrURL = myIntent.getStringExtra("qrURL");
         nome = myIntent.getStringExtra("nome");
 
-
         imageView = findViewById(R.id.imageView2);
         button = findViewById(R.id.button2);
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 isWriteStoragePermissionGranted();
 
             }
@@ -109,7 +106,6 @@ public class VerQR extends AppCompatActivity {
                 Log.d("TAG", "External storage1");
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.v("TAG", "Permission: " + permissions[0] + "was " + grantResults[0]);
-                    //resume tasks needing this permission
                     downloadFile();
 
                 }
@@ -148,7 +144,6 @@ public class VerQR extends AppCompatActivity {
     private void scanFile(Context context, Uri imageUri) {
 
         Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
-
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setDataAndType(uri, "*/*");

@@ -69,7 +69,6 @@ public class AddProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
 
-        //Tratamento do Dialog de progresso
         progress = new ProgressDialog(this);
         progress.setTitle("Loading");
         progress.setMessage("Wait while loading...");
@@ -219,7 +218,7 @@ public class AddProduct extends AppCompatActivity {
         String name = String.valueOf(ProdNameET.getText());
         String desc = String.valueOf(ProdDescET.getText());
 
-        String inputValue = name + "&sep&" + desc ;
+        String inputValue = name + "&sep&" + desc;
 
 
         if (!inputValue.equals("")) {
@@ -359,13 +358,11 @@ public class AddProduct extends AppCompatActivity {
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
                         }
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Imageurl = taskSnapshot.getDownloadUrl();
-                            //saveProduct(true);
                             saveProduct(qrFromImage, true);
                         }
                     });
@@ -440,18 +437,15 @@ public class AddProduct extends AppCompatActivity {
         final Dialog dialog = new Dialog(AddProduct.this);
         dialog.setContentView(R.layout.dialog_product_created);
         dialog.setTitle("Produto Criado");
-       // dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        // set the custom dialog components - text, image and button
-        TextView tvName = (TextView) dialog.findViewById(R.id.tvName);
+        TextView tvName = dialog.findViewById(R.id.tvName);
         tvName.setText(product.getNome());
-        ImageView ivImage = (ImageView) dialog.findViewById(R.id.ivImage);
+        ImageView ivImage = dialog.findViewById(R.id.ivImage);
         Glide.with(getApplicationContext()).load(product.getImgURL()).into(ivImage);
 
 
-
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-        // if button is clicked, close the custom dialog
+
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

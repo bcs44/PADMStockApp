@@ -13,25 +13,21 @@ import com.example.bruna.stockapp.fragmentsProducts.Fragment_Ortopedia;
 
 public class Products extends AppCompatActivity {
 
-    private SectionsPageAdapter msectionsPageAdapter;
-    private ViewPager mViewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-        msectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        ViewPager mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tableLayout);
+        TabLayout tabLayout = findViewById(R.id.tableLayout);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
 
     }
 
-    public void setupViewPager(ViewPager viewPager){
+    public void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new Fragment_Calcado(), "Calçado");
@@ -42,7 +38,6 @@ public class Products extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
     }
-
 
 
 }

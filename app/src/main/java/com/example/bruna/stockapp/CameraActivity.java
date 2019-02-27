@@ -40,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
             case RequestCameraPermissionID:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                         return;
+                        return;
                     }
                     try {
                         cameraSource.start(cameraPreview.getHolder());
@@ -109,18 +109,17 @@ public class CameraActivity extends AppCompatActivity {
 
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
 
-                if(qrcodes.size() != 0){
+                if (qrcodes.size() != 0) {
 
                     txtResult.post(new Runnable() {
                         @Override
                         public void run() {
                             cameraSource.release();
 
-                            if(entrou){
+                            if (entrou) {
                                 return;
-                            }
-                            else{
-                                Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                            } else {
+                                Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                 vibrator.vibrate(100);
                                 String result = qrcodes.valueAt(0).displayValue;
                                 String nome = result.split("&sep&")[0];

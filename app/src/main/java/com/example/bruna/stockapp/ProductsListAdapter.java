@@ -28,23 +28,12 @@ public class ProductsListAdapter extends ArrayAdapter<Product> {
     private int mResource;
     private int lastPosition = -1;
 
-
-    /**
-     * Holds variables in a View
-     */
     private static class ViewHolder {
         TextView nome;
         TextView preco;
-        //     TextView img;
         ImageView image;
     }
 
-    /**
-     * Default constructor for the PersonListAdapter
-     * @param context
-     * @param resource
-     * @param objects
-     */
     public ProductsListAdapter(Context context, int resource, ArrayList<Product> objects) {
         super(context, resource, objects);
         mContext = context;
@@ -55,36 +44,26 @@ public class ProductsListAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        //sets up the image loader library
         setupImageLoader();
 
-        //get the persons information
         String nome = getItem(position).getNome();
         String preco = getItem(position).getPreco();
-        //    int img = getItem(position).getImg();
         String imgUrl = getItem(position).getImgURL();
-
-        //create the view result for showing the animation
         final View result;
-
-        //ViewHolder object
         ViewHolder holder;
 
-
-        if(convertView == null){
+        if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
-            holder= new ViewHolder();
-            holder.nome = (TextView) convertView.findViewById(R.id.textView1);
-            holder.preco = (TextView) convertView.findViewById(R.id.textView2);
-            //   holder.img = (TextView) convertView.findViewById(R.id.textView3);
-            holder.image = (ImageView) convertView.findViewById(R.id.image);
+            holder = new ViewHolder();
+            holder.nome = convertView.findViewById(R.id.textView1);
+            holder.preco = convertView.findViewById(R.id.textView2);
+            holder.image = convertView.findViewById(R.id.image);
 
             result = convertView;
 
             convertView.setTag(holder);
-        }
-        else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
@@ -97,37 +76,24 @@ public class ProductsListAdapter extends ArrayAdapter<Product> {
 
         holder.nome.setText(nome);
         holder.preco.setText(preco);
-        //  holder.img.setText(img);
 
-        //create the imageloader object
         ImageLoader imageLoader = ImageLoader.getInstance();
-        ;
-        int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed",null,mContext.getPackageName());
 
-        //create display options
+        int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed", null, mContext.getPackageName());
+
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                 .cacheOnDisc(true).resetViewBeforeLoading(true)
                 .showImageForEmptyUri(defaultImage)
                 .showImageOnFail(defaultImage)
                 .showImageOnLoading(defaultImage).build();
 
-        //  String url = "https://firebasestorage.googleapis.com/v0/b/ortoconforto14.appspot.com/o/65971_1104628946218823_5320259956633339258_n.png?alt=media&token=6b2ca6a1-415e-4ade-a9f5-4dbf3ec6adde";
-
-        //Glide.with(context).load(imgUrl).into(imageView);
-
-
-        //download and display image from url
         imageLoader.displayImage(imgUrl, holder.image, options);
-
         return convertView;
 
     }
 
-    /**
-     * Required for setting up the Universal Image loader Library
-     */
-    private void setupImageLoader(){
-        // UNIVERSAL IMAGE LOADER SETUP
+
+    private void setupImageLoader() {
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheOnDisc(true).cacheInMemory(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
@@ -140,6 +106,5 @@ public class ProductsListAdapter extends ArrayAdapter<Product> {
                 .discCacheSize(100 * 1024 * 1024).build();
 
         ImageLoader.getInstance().init(config);
-        // END - UNIVERSAL IMAGE LOADER SETUP
     }
 }

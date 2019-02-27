@@ -98,10 +98,9 @@ public class Search extends AppCompatActivity {
 
     private void doTheRest(String firstType, String sSearch) {
         String search;
-        if(From.equals("Voice")) {
+        if (From.equals("Voice")) {
             search = sSearch.substring(0, 1).toUpperCase() + sSearch.substring(1, sSearch.length());
-        }
-        else{
+        } else {
             search = sSearch;
         }
 

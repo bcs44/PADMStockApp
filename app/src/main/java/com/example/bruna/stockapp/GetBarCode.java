@@ -13,15 +13,14 @@ public class GetBarCode extends AppCompatActivity {
     TextView tvCode, tvFormat;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_bar_code);
 
-        bScan = (Button) findViewById(R.id.bScan);
-        tvCode = (TextView) findViewById(R.id.tvCode);
-        tvFormat = (TextView) findViewById(R.id.tvFormat);
+        bScan = findViewById(R.id.bScan);
+        tvCode = findViewById(R.id.tvCode);
+        tvFormat = findViewById(R.id.tvFormat);
 
     }
 
@@ -34,8 +33,7 @@ public class GetBarCode extends AppCompatActivity {
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000) {
             if (resultCode == RESULT_OK) {

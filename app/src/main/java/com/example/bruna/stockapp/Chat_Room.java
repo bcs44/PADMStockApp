@@ -24,12 +24,11 @@ import java.util.Map;
 
 public class Chat_Room extends AppCompatActivity {
 
-
-    private Button btn_send_msg;
     private EditText input_msg;
     private TextView chat_conversation;
 
-    private String user_name, room_name, filial;
+    private String user_name;
+    private String room_name;
     private DatabaseReference root;
     private String temp_key;
 
@@ -40,14 +39,15 @@ public class Chat_Room extends AppCompatActivity {
         setContentView(R.layout.activity_chatroom);
 
 
-        btn_send_msg = (Button) findViewById(R.id.btn_send);
-        input_msg = (EditText) findViewById(R.id.msg_input);
-        chat_conversation = (TextView) findViewById(R.id.textView);
+        Button btn_send_msg = findViewById(R.id.btn_send);
+        input_msg = findViewById(R.id.msg_input);
+        chat_conversation = findViewById(R.id.textView);
 
-        user_name = getIntent().getExtras().get("user_name").toString() + "-" + getIntent().getExtras().get("filial").toString();;
+        user_name = getIntent().getExtras().get("user_name").toString() + "-" + getIntent().getExtras().get("filial").toString();
+        ;
         room_name = getIntent().getExtras().get("room_name").toString();
 
-        setTitle("Room - "+room_name);
+        setTitle("Room - " + room_name);
 
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
 
@@ -55,7 +55,7 @@ public class Chat_Room extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Map<String,Object> map = new HashMap<String, Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 temp_key = root.push().getKey();
                 root.updateChildren(map);
 
@@ -99,21 +99,22 @@ public class Chat_Room extends AppCompatActivity {
         });
 
 
-    //    Toolbar toolbar = findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
+        //    Toolbar toolbar = findViewById(R.id.toolbar);
+        //  setSupportActionBar(toolbar);
     }
 
     private String chat_msg, chat_user_name;
-    private void append_chat_conversation(DataSnapshot dataSnapshot){
 
-        Iterator i =dataSnapshot.getChildren().iterator();
+    private void append_chat_conversation(DataSnapshot dataSnapshot) {
 
-        while(i.hasNext()){
+        Iterator i = dataSnapshot.getChildren().iterator();
 
-            chat_msg = (String) ((DataSnapshot)i.next()).getValue();
-            chat_user_name = (String) ((DataSnapshot)i.next()).getValue();
+        while (i.hasNext()) {
 
-            chat_conversation.append(chat_user_name+ " : "+chat_msg+"\n");
+            chat_msg = (String) ((DataSnapshot) i.next()).getValue();
+            chat_user_name = (String) ((DataSnapshot) i.next()).getValue();
+
+            chat_conversation.append(chat_user_name + " : " + chat_msg + "\n");
         }
     }
 
