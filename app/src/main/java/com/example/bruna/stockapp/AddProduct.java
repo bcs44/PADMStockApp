@@ -420,8 +420,6 @@ public class AddProduct extends AppCompatActivity {
                 }
 
                 myRef.child(s + String.valueOf(count + 1)).setValue(product);
-                Toast.makeText(getApplicationContext(), "FEITO",
-                        Toast.LENGTH_LONG).show();
 
                 progress.dismiss();
                 openDialog(product);
