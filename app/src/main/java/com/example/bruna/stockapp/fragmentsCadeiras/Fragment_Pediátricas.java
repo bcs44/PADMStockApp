@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.bruna.stockapp.DetailProduct;
+import com.example.bruna.stockapp.Global;
 import com.example.bruna.stockapp.Product;
 import com.example.bruna.stockapp.ProductsListAdapter;
 import com.example.bruna.stockapp.R;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_Pediátricas extends Fragment {
+
+    Global global = Global.getInstance();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,15 +39,16 @@ public class Fragment_Pediátricas extends Fragment {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Product> productsList = new ArrayList<>();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                if (!global.getOnAdd()) {
+                    List<Product> productsList = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                    Product productsTable = dataSnapshot1.getValue(Product.class);
+                        Product productsTable = dataSnapshot1.getValue(Product.class);
 
-                    productsList.add(productsTable);
+                        productsList.add(productsTable);
+                    }
+                    createProduct(productsList, view);
                 }
-                createProduct(productsList, view);
-
             }
 
             @Override

@@ -380,6 +380,9 @@ public class AddProduct extends AppCompatActivity {
 
     public void saveProduct(Boolean qrCode, boolean image) {
 
+        Global global = Global.getInstance();
+        global.setOnAdd(true);
+
         final Product product = new Product();
 
         if (qrCode) {
